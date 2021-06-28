@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.nahuelarias.agendalgti",
+  "applicationId": "com.nahuelarias.myapplication",
   "variantName": "release",
   "elements": [
     {
