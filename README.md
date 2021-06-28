@@ -6,13 +6,13 @@ Primer app utilizando android estudio con desarrollo en el leguaje kotlin. Lo qu
 Ya esta hecho
 
 - visualizar campus y siu
-- visualizar materias y sus correlatividades
+- visualizar materias y sus correlatividadesCancel changes
 
 falta
 
 - mejor apariencia
 - boton de aprobado
-- conectar con Google analitics
+- conectar con firebase
 - agregar apartado de desarrollo
 - boton para ir a la pantalla inicial
 - recargar la pagina cuando se esta tanto en el siu como en el campus
