@@ -3,8 +3,8 @@ package com.nahuelarias.agendalgti
 import android.content.Intent
 import android.os.Bundle
 import android.widget.AdapterView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_act_correlatividad.*
 import kotlinx.android.synthetic.main.activity_act_plan_estudio.*
 import kotlinx.android.synthetic.main.item_materia.*
 import java.io.BufferedReader
@@ -50,20 +50,20 @@ class act_Plan_Estudio : AppCompatActivity() {
         this.listaplan.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
 
-                Toast.makeText(this, "SUERTE!!", Toast.LENGTH_SHORT).show()
+
+
 
                 val selectedItemText = parent.getItemAtPosition(position)
 
                 val intent: Intent = Intent(this@act_Plan_Estudio,act_Correlatividad::class.java)
 
-                val b : Bundle= Bundle()
-                b.putInt("dt",position)
 
-                println(selectedItemText)
 
-                println(position)
-                intent.putExtras(b)
+                var codigomateria1 = materiasa.get(position)
 
+                var codigomateria = setcodigo(codigomateria1.Codigo)
+                println("codigooooooo1")
+                println(codigomateria)
                 startActivity(intent)
 
             }

@@ -2,6 +2,41 @@ package com.nahuelarias.agendalgti
 
 var materiastxt = mutableListOf<Materias>()
 
+var Codigo = ""
+
+fun setcodigo(Cod:String)
+{
+    Codigo=Cod
+}
+
+fun getcodigo():String
+{
+    return Codigo
+}
+
+
+fun retornarmateria(Cod:String): Materias {
+
+    var i=0
+
+
+
+    var producto= materiastxt[i]
+
+    materiastxt.forEach {
+
+        var materiacomparar = materiastxt[i]
+
+        if(materiacomparar.Codigo == Cod)
+        {
+            producto = materiastxt[i]
+        }
+            i++
+    }
+
+return producto
+}
+
 fun setMaterias(mater: MutableList<Materias>)
 {
 

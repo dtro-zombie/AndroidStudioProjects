@@ -18,6 +18,7 @@ class materiaAdapter(private val mContext: Context, private val listaProductos: 
         layout.codigo.text = producto.Codigo
         layout.materia.text = producto.Materia
 
+
         if(producto.Aprobada == "false") {
            // FFFFAB91
             layout.Contenedocolor.setBackgroundColor(4294945681.toInt())
