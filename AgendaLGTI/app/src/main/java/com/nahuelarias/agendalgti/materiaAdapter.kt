@@ -20,10 +20,11 @@ class materiaAdapter(private val mContext: Context, private val listaProductos: 
 
 
         if(producto.Aprobada == "false") {
-           // FFFFAB91
+           // FFFFAB91 rojo
             layout.Contenedocolor.setBackgroundColor(4294945681.toInt())
+
         }else{
-            //FFA5D6A7
+            //FFA5D6A7 verde
             layout.Contenedocolor.setBackgroundColor(4289058471.toInt())
 
         }

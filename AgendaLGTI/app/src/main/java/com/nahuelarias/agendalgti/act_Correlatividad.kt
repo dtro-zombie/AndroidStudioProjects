@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_act_correlatividad.*
 import kotlinx.android.synthetic.main.activity_act_plan_estudio.*
 import kotlinx.android.synthetic.main.item_materia.*
+import java.io.File
 
 class act_Correlatividad : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -22,75 +23,30 @@ class act_Correlatividad : AppCompatActivity() {
 
 
         var Cod= getcodigo()
-
-
-
-        println("2013")
-
-
-        println(Cod)
-
-
         val listaProductos = getMaterias()
-
-
         //retorna materia
-
-
-
-
-
-            var producto= retornarmateria(Cod)
-
-
-
-
-
-        println("holllllllaaaaaaaaaa"+producto.Materia)
-        println("holllllllaaaaaaaaaa"+producto.Codigo)
-
-            var listacorrelativas = mutableListOf<String>()
-
-
+        var producto= retornarmateria(Cod)
+        var listacorrelativas = mutableListOf<String>()
         var i=0
-
-
-
         var listamateriascorrelatiovas = mutableListOf<Materias>()
         i = 0
         listaProductos.forEach { _ ->
-            println("holllllllaaaaaaaaaa"+producto.Materia)
-            println("holllllllaaaaaaaaaa"+producto.Codigo)
-
             var unamateria = listaProductos[i]
-
-
-            if(producto.Correlativa1==unamateria.Codigo||producto.Correlativa2==unamateria.Codigo||producto.Correlativa3==unamateria.Codigo||producto.Correlativa4==unamateria.Codigo)
-            {
-                listamateriascorrelatiovas.add(unamateria)
-            }
-
-
+                if(producto.Correlativa1==unamateria.Codigo||producto.Correlativa2==unamateria.Codigo||producto.Correlativa3==unamateria.Codigo||producto.Correlativa4==unamateria.Codigo)
+                    {
+                        listamateriascorrelatiovas.add(unamateria)
+                    }
             i++
-
-
-
 
         }
 
-        println("holllllllaaaaaaaaaa"+producto.Materia)
-        println("holllllllaaaaaaaaaa"+producto.Codigo)
         Materiamostrar.text = "Para cursar "+producto.Materia+" de "+ producto.Anio + "año nesecitas"
 
 
          i=0
         listamateriascorrelatiovas.forEach {
 
-
                 val adapter = materiaAdapter(this, listamateriascorrelatiovas)
-
-
-
                 listacorrelatividad.adapter = adapter
                 i++
             }
@@ -98,27 +54,16 @@ class act_Correlatividad : AppCompatActivity() {
         if(producto.Aprobada=="true") {
             swt_aprobado.toggle()
         }
-
-
         this.listacorrelatividad.onItemClickListener =
 
             AdapterView.OnItemClickListener { parent, view, position, id ->
 
                 var codigomateria1 = listamateriascorrelatiovas.get(position)
-                var codigomateria = setcodigo(codigomateria1.Codigo)
-                println("codigooooooo2")
-                println(position)
-                println(codigomateria)
+                 setcodigo(codigomateria1.Codigo)
                 val intent: Intent = Intent(this@act_Correlatividad,act_Correlatividad::class.java)
                 startActivity(intent)
 
             }
-
-
-
-
-
-
         swt_aprobado.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
             {
@@ -131,10 +76,6 @@ class act_Correlatividad : AppCompatActivity() {
                             if(aprobadas.Aprobada=="true")
                             {
                                 cont++
-
-
-
-
                             }
                                 i++
                         }
@@ -152,20 +93,12 @@ class act_Correlatividad : AppCompatActivity() {
 
                     setMaterias(listaProductos)
 
-                        listacorrelatividad.deferNotifyDataSetChanged()
+
+                    sobreescribir(listaProductos)
+                    Thread.sleep(1000)
+
 
                     Toast.makeText(this, " APROBADO  ", Toast.LENGTH_SHORT).show()
-
-
-                    i=0
-                        listaProductos.forEach {
-
-                            var mostrar = listaProductos[i]
-
-                            println(mostrar.Materia)
-                            println(mostrar.Aprobada)
-                                i++
-                        }
 
 
                 }else{
@@ -175,14 +108,10 @@ class act_Correlatividad : AppCompatActivity() {
 
             }
 
-
-
             else
             {
                 i=0
                 listaProductos.forEach {
-
-
 
                     if(listaProductos[i].Codigo==Cod)
                     {
@@ -191,28 +120,36 @@ class act_Correlatividad : AppCompatActivity() {
 
                     i++
                 }
-
-
-
-
                 setMaterias(listaProductos)
-
-                listacorrelatividad.deferNotifyDataSetChanged()
-                Toast.makeText(this, " se saco el aprobado", Toast.LENGTH_SHORT).show()
+                sobreescribir(listaProductos)
 
 
-
-
-            }
-
-
-            fun sobreescribir()
-            {
-
-            }
+                Thread.sleep(1000)
+                Toast.makeText(this, " se saco el aprobado ", Toast.LENGTH_SHORT).show()
+                }
 
         }
 
+
+
+
+
+        }
+
+    private fun sobreescribir(listaProductos: MutableList<Materias>) {
+
+
+      //  var inputStream =
+        //    resources.openRawResource(resources.getIdentifier("data", "raw", packageName)).
+
+
+
+
+        val outString = listaProductos
+        File("src/test/java/data").bufferedWriter().use { out -> out.write(outString.toString()) }
+
+        //inputStream
+    }
 
 
 
@@ -221,9 +158,5 @@ class act_Correlatividad : AppCompatActivity() {
     }
 
 
-
-
-
-}
 
 

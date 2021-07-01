@@ -25,7 +25,7 @@ fun retornarmateria(Cod:String): Materias {
 
     materiastxt.forEach {
 
-        var materiacomparar = materiastxt[i]
+        val materiacomparar = materiastxt[i]
 
         if(materiacomparar.Codigo == Cod)
         {
@@ -33,6 +33,8 @@ fun retornarmateria(Cod:String): Materias {
         }
             i++
     }
+
+
 
 return producto
 }
@@ -64,4 +66,8 @@ fun txtsplit(text:List<String>) : MutableList<Materias> {
 
     }
     return textosplit
+
+
+
+
 }

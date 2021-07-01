@@ -34,12 +34,6 @@ class act_siuguarani : AppCompatActivity() {
         settings.javaScriptEnabled=true
             webView.loadUrl(stringUrl)
 
-
-
-
-
-
-
     }
 
     override fun onBackPressed() = if(webView.canGoBack()){

@@ -1,73 +1,133 @@
 package com.nahuelarias.agendalgti
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_act_correlatividad.*
 import kotlinx.android.synthetic.main.activity_act_plan_estudio.*
 import kotlinx.android.synthetic.main.item_materia.*
-import java.io.BufferedReader
-import java.io.InputStreamReader
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
 
 
 class act_Plan_Estudio : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_act_plan_estudio)
 
-        val text= mutableListOf<String>()
-        var filename = "data"
-        var inputStream =
-            resources.openRawResource(resources.getIdentifier(filename, "raw", packageName))
+        val text = mutableListOf<String>()
 
 
-        var inputStreamReader = InputStreamReader(inputStream)
-        var bufferedReader = BufferedReader(inputStreamReader)
-        //text = bufferedReader.readLine().toString()
-        bufferedReader.useLines { texto -> texto.forEach { text.add(it) } }
-        text.forEach {
+val filepath="/data/data/com.nahuelarias.myapplication/files/files/data.txt"
 
-            println("> $it")
+        val f: File = File(filepath)
+        if (f.exists() == true) {
+
+            Log.e(TAG, "Valid :$filepath")
+        }
+
+        else {
+
+            crearachivo()
+
+            Log.e(TAG, "InValid :$filepath")
         }
 
 
 
 
+        var miArchivo= File("/data/data/com.nahuelarias.myapplication/files/files/data.txt")
+
+        val contenido = miArchivo.readText()
+
+        val lineas = miArchivo.readLines()
+
+        lineas.forEach { println(it) } // muestra todo el archivo
+
+        val lineasLista = mutableListOf<String>()
+        miArchivo.useLines { lines -> lines.forEach { text.add(it) } }
+
         var materiasa = mutableListOf<Materias>()
-        materiasa = txtsplit(text)
+            materiasa = txtsplit(text)
+
 
         setMaterias(materiasa)
 
+            materiasa.forEach {
+                val adapter = materiaAdapter(this, materiasa)
 
-        materiasa.forEach {
-            val adapter = materiaAdapter(this, materiasa)
+                listaplan.adapter = adapter
 
-            listaplan.adapter = adapter
+            }
+
+            this.listaplan.onItemClickListener =
+                AdapterView.OnItemClickListener { parent, view, position, id ->
+
+                    val intent: Intent =
+                        Intent(this@act_Plan_Estudio, act_Correlatividad::class.java)
+                    var codigomateria1 = materiasa.get(position)
+
+                    setcodigo(codigomateria1.Codigo)
+
+                    startActivity(intent)
+
+                }
+
+
+        }
+        fun crearachivo() {
+            try {
+
+                //Define nombre de archivo destino.
+                val newFileName = "data.txt"
+                //Obtiene directorio de almacenamiento externo y directorio donde se copiara archivo.
+                //val path_newFileName = "/data/data/com.nahuelarias.myapplication/file/"
+
+               val nuevaCarpeta = File(filesDir, "files")
+                nuevaCarpeta.mkdirs()
+
+
+                //Obtiene archivo de directorio /raw
+                val inputStream:InputStream = resources.openRawResource(R.raw.data)
+                //Lee contenido de archivo
+                val inputString = inputStream.bufferedReader().use{it.readText()}
+
+                //Define y crea archivo
+                var myInternalFile:File = File(nuevaCarpeta,newFileName)
+                myInternalFile.createNewFile()
+
+
+                try {
+                    val fileOutPutStream = FileOutputStream(myInternalFile)
+                    //Guarda contenido en archivo
+                    fileOutPutStream.write(inputString.toByteArray())
+                    fileOutPutStream.close()
+                } catch (e: IOException) {
+                    Log.d(TAG, "IOException " + e.message)
+                }
+
+
+            } catch (e:Exception){
+                Log.d(TAG, "Exception : " + e.toString())
+            }
 
         }
 
-        this.listaplan.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, view, position, id ->
+        }
 
 
 
 
-                val selectedItemText = parent.getItemAtPosition(position)
-
-                val intent: Intent = Intent(this@act_Plan_Estudio,act_Correlatividad::class.java)
 
 
 
-                var codigomateria1 = materiasa.get(position)
 
-                var codigomateria = setcodigo(codigomateria1.Codigo)
-                println("codigooooooo1")
-                println(codigomateria)
-                startActivity(intent)
-
-            }
-    }
-}
 
 
