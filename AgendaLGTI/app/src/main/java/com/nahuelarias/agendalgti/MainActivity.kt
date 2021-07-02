@@ -19,8 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         this.btnsiu.setOnClickListener {
             val intent = Intent(this@MainActivity, act_siuguarani::class.java)
-            val dato =
-                "https://estudiantes.unpaz.edu.ar/autogestion/acceso/login?ref=http://estudiantes.unpaz.edu.ar/autogestion/requisitos_ingreso\")\n"
+            val dato = "https://estudiantes.unpaz.edu.ar/autogestion/acceso/login?ref=http://estudiantes.unpaz.edu.ar/autogestion/requisitos_ingreso\")\n"
             val b = Bundle()
             b.putString("dt", dato)
             intent.putExtras(b)

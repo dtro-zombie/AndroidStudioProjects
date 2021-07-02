@@ -85,10 +85,9 @@ val filepath="/data/data/com.nahuelarias.myapplication/files/files/data.txt"
         fun crearachivo() {
             try {
 
-                //Define nombre de archivo destino.
+
                 val newFileName = "data.txt"
-                //Obtiene directorio de almacenamiento externo y directorio donde se copiara archivo.
-                //val path_newFileName = "/data/data/com.nahuelarias.myapplication/file/"
+
 
                val nuevaCarpeta = File(filesDir, "files")
                 nuevaCarpeta.mkdirs()

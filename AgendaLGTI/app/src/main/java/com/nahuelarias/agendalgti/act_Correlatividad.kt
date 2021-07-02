@@ -22,36 +22,36 @@ class act_Correlatividad : AppCompatActivity() {
         setContentView(R.layout.activity_act_correlatividad)
 
 
-        var Cod= getcodigo()
+        var Cod = getcodigo()
         val listaProductos = getMaterias()
         //retorna materia
-        var producto= retornarmateria(Cod)
+        var producto = retornarmateria(Cod)
         var listacorrelativas = mutableListOf<String>()
-        var i=0
+        var i = 0
         var listamateriascorrelatiovas = mutableListOf<Materias>()
         i = 0
         listaProductos.forEach { _ ->
             var unamateria = listaProductos[i]
-                if(producto.Correlativa1==unamateria.Codigo||producto.Correlativa2==unamateria.Codigo||producto.Correlativa3==unamateria.Codigo||producto.Correlativa4==unamateria.Codigo)
-                    {
-                        listamateriascorrelatiovas.add(unamateria)
-                    }
+            if (producto.Correlativa1 == unamateria.Codigo || producto.Correlativa2 == unamateria.Codigo || producto.Correlativa3 == unamateria.Codigo || producto.Correlativa4 == unamateria.Codigo) {
+                listamateriascorrelatiovas.add(unamateria)
+            }
             i++
 
         }
 
-        Materiamostrar.text = "Para cursar "+producto.Materia+" de "+ producto.Anio + "año nesecitas"
+        Materiamostrar.text =
+            "Para cursar " + producto.Materia + " de " + producto.Anio + "año nesecitas"
 
 
-         i=0
+        i = 0
         listamateriascorrelatiovas.forEach {
 
-                val adapter = materiaAdapter(this, listamateriascorrelatiovas)
-                listacorrelatividad.adapter = adapter
-                i++
-            }
+            val adapter = materiaAdapter(this, listamateriascorrelatiovas)
+            listacorrelatividad.adapter = adapter
+            i++
+        }
 
-        if(producto.Aprobada=="true") {
+        if (producto.Aprobada == "true") {
             swt_aprobado.toggle()
         }
         this.listacorrelatividad.onItemClickListener =
@@ -59,34 +59,30 @@ class act_Correlatividad : AppCompatActivity() {
             AdapterView.OnItemClickListener { parent, view, position, id ->
 
                 var codigomateria1 = listamateriascorrelatiovas.get(position)
-                 setcodigo(codigomateria1.Codigo)
-                val intent: Intent = Intent(this@act_Correlatividad,act_Correlatividad::class.java)
+                setcodigo(codigomateria1.Codigo)
+                val intent: Intent = Intent(this@act_Correlatividad, act_Correlatividad::class.java)
                 startActivity(intent)
 
             }
         swt_aprobado.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked)
-            {
+            if (isChecked) {
 
-                i=0
-                var cont=0
-                        listamateriascorrelatiovas.forEach {
-                           var aprobadas = listamateriascorrelatiovas[i]
+                i = 0
+                var cont = 0
+                listamateriascorrelatiovas.forEach {
+                    var aprobadas = listamateriascorrelatiovas[i]
 
-                            if(aprobadas.Aprobada=="true")
-                            {
-                                cont++
-                            }
-                                i++
-                        }
-                if (listamateriascorrelatiovas.size == cont || listamateriascorrelatiovas.size == 0 )
-                {
-                    i=0
+                    if (aprobadas.Aprobada == "true") {
+                        cont++
+                    }
+                    i++
+                }
+                if (listamateriascorrelatiovas.size == cont || listamateriascorrelatiovas.size == 0) {
+                    i = 0
                     listaProductos.forEach {
 
-                        if(listaProductos[i].Codigo==Cod)
-                        {
-                            listaProductos[i].Aprobada="true"
+                        if (listaProductos[i].Codigo == Cod) {
+                            listaProductos[i].Aprobada = "true"
                         }
                         i++
                     }
@@ -95,27 +91,27 @@ class act_Correlatividad : AppCompatActivity() {
 
 
                     sobreescribir(listaProductos)
-                    Thread.sleep(1000)
+
 
 
                     Toast.makeText(this, " APROBADO  ", Toast.LENGTH_SHORT).show()
 
 
-                }else{
-                    Toast.makeText(this, "Debe aprobar las correlativas primero", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Debe aprobar las correlativas primero",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     swt_aprobado.toggle()
                 }
 
-            }
-
-            else
-            {
-                i=0
+            } else {
+                i = 0
                 listaProductos.forEach {
 
-                    if(listaProductos[i].Codigo==Cod)
-                    {
-                        listaProductos[i].Aprobada= "false"
+                    if (listaProductos[i].Codigo == Cod) {
+                        listaProductos[i].Aprobada = "false"
                     }
 
                     i++
@@ -126,36 +122,64 @@ class act_Correlatividad : AppCompatActivity() {
 
                 Thread.sleep(1000)
                 Toast.makeText(this, " se saco el aprobado ", Toast.LENGTH_SHORT).show()
-                }
+            }
 
         }
 
 
-
-
-
-        }
+    }
 
     private fun sobreescribir(listaProductos: MutableList<Materias>) {
 
 
-      //  var inputStream =
-        //    resources.openRawResource(resources.getIdentifier("data", "raw", packageName)).
+        val file = File("/data/data/com.nahuelarias.myapplication/files/files/data.txt")
+        if (!file.exists()) {
+
+            file.createNewFile()
+
+        } else {
+
+            file.delete()
+            val newFileName = "data.txt"
+
+
+            val nuevaCarpeta = File(filesDir, "files")
+
+            //Define y crea archivo
+            var myInternalFile:File = File(nuevaCarpeta,newFileName)
+            myInternalFile.createNewFile()
+
+            val ruta = "/data/data/com.nahuelarias.myapplication/files/files/"
 
 
 
+            val archivo = File(ruta)
 
-        val outString = listaProductos
-        File("src/test/java/data").bufferedWriter().use { out -> out.write(outString.toString()) }
 
-        //inputStream
+            if (archivo.exists()) {
+
+                for(i in 0..42) {
+                    var text =
+                        listaProductos[i].Codigo + ";" + listaProductos[i].Materia + ";" + listaProductos[i].Aprobada + ";" + listaProductos[i].Anio + ";" + listaProductos[i].Correlativa1 + ";" + listaProductos[i].Correlativa2 + ";" + listaProductos[i].Correlativa3 + ";" + listaProductos[i].Correlativa4
+                    //Escribe texto en archivo.
+                    File(ruta, "data.txt").appendText(text+"\n")
+                }
+
+
+            }
+            else{sobreescribir(listaProductos)}
+
+
+                }
+
+
+        }
+
+
     }
 
 
 
-
-
-    }
 
 
 
