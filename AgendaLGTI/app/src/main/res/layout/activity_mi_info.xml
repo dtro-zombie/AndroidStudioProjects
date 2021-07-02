@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mi_info">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="362dp"
+        android:layout_height="218dp"
+        android:layout_marginTop="49dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hola me presento me llamo Nahuel Arias, soy estudiante en la  unpaz actualmente en la carrera Licenciatura en Gestión de Tecnologías de la iformacíon (LGTI) , primero que nada agradecerte por utilizar mi app y espero que te halla sido util en el trancurso de tu carrera. Es una app hecha a pulmon es normal que tenga errores espero que me lo puedas reportar en las redes sociales de abajo, ademas podrias dejarme ideas como para poder mejorarla, estoy atento a cualquier critica." />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="105dp"
+        android:layout_height="307dp"
+        android:layout_marginBottom="129dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.431">
+
+        <LinearLayout
+            android:layout_width="400dp"
+            android:layout_height="153dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/btninstagram"
+                android:layout_width="105dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="64dp"
+                app:srcCompat="@drawable/intagram" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:gravity="center"
+                android:text="/Nahu.Arias1/"
+                android:textColor="#090707" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"></LinearLayout>
+
+        <ImageView
+            android:id="@+id/btnlinkeding"
+            android:layout_width="105dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="64dp"
+            app:srcCompat="@drawable/linkeding" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="106dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+            android:text="/nahuel-ariasz/"
+            android:textColor="#070606" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

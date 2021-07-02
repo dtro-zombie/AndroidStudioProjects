@@ -23,11 +23,15 @@ class materiaAdapter(private val mContext: Context, private val listaProductos: 
            // FFFFAB91 rojo
             layout.Contenedocolor.setBackgroundColor(4294945681.toInt())
 
-        }else{
+        }else if(producto.Aprobada == "true"){
             //FFA5D6A7 verde
             layout.Contenedocolor.setBackgroundColor(4289058471.toInt())
 
         }
+
+
+
+
         return layout
     }
 }

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".act_Correlatividad"></activity>
+        <activity android:name=".mi_info"></activity>
+        <activity android:name=".act_Correlatividad" />
         <activity android:name=".act_correlatividad" />
         <activity android:name=".act_Plan_Estudio" />
         <activity android:name=".act_siuguarani" />

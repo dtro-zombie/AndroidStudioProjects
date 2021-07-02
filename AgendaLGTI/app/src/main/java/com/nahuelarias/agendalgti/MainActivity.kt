@@ -16,6 +16,14 @@ class MainActivity : AppCompatActivity() {
 
 
 
+        this.btninfo.setOnClickListener{
+
+            val intent = Intent(this@MainActivity,mi_info::class.java)
+            startActivity(intent)
+
+
+        }
+
 
         this.btnsiu.setOnClickListener {
             val intent = Intent(this@MainActivity, act_siuguarani::class.java)
